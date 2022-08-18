@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+</head>
+<body>
+    <nav class="navbar"><h1>Weather Forcast</h1></nav>
+
+    
+    <form action="" method="post">{% csrf_token %}
+        <div class="search">
+            <Input type="text" placeholder="search" name="city"></Input>
+            <button>Search</button>
+        </div>    
+    </form>
+    
+    <div class="container">
+        {% if weather_data.city is not None %}    
+            <h1>City: {{weather_data.city | capfirst}} </h1>
+            <div>
+                <h3>Description: {{weather_data.weather_description | capfirst}} </h3>
+                <div id="imagecontainer"><img src="https://openweathermap.org/img/w/{{weather_data.weather_icon}}.png" alt="">
+                </div>
+            </div>
+            <h3>Temperature: {{weather_data.weather_temperature}}C</h3>
+            <h3>Humidity: {{weather_data.weather_humidity}} </h3>
+            <h3>Pressure: {{weather_data.weather_pressure}} </h3>
+        {% endif %}
+    </div>
+</body>
